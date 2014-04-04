@@ -222,7 +222,13 @@
         var self = Foundation.libs.dropdown,
             p = self.dirs._base.call(this, t),
             pip_offset_base = (t.outerWidth() / 2) - 8;
-
+        
+        // fr
+        if ( (p.left + this.outerWidth()) > $(this).offsetParent().width() ){
+          self.adjust_pip(this.width(), p);          
+          return {left: $(this).offsetParent().width() - this.outerWidth(),  top: p.top + t.outerHeight()};
+        }
+        
         if (t.outerWidth() < this.outerWidth() || self.small()) {
           self.adjust_pip(pip_offset_base, p);
         }
